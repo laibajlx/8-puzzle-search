@@ -66,14 +66,18 @@ class PuzzleState(object):
         Moves the blank tile one column to the left.
         :return a PuzzleState with the new configuration
         """
-        pass
+        if self.bank_index % self.n == 0:
+            return None
+        return self._swap_to(self.blank_index-1, "Left")
 
     def move_right(self):
         """
         Moves the blank tile one column to the right.
         :return a PuzzleState with the new configuration
         """
-        pass
+        if self.blank_index % self.n == self.n-1:
+            return None
+        return self._swap_to(self.blank_index+1, "Right")
 
     def expand(self):
         """ Generate the child nodes of this node """
