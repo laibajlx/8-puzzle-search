@@ -57,7 +57,9 @@ class PuzzleState(object):
         Moves the blank tile one row down.
         :return a PuzzleState with the new configuration
         """
-        pass
+        if self.blank_index // self.n==self.n-1:
+            return None
+        return self._swap_to(self.bank_index)
 
     def move_left(self):
         """
