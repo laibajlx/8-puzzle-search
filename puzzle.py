@@ -45,7 +45,21 @@ class PuzzleState(object):
         Moves the blank tile one row up.
         :return a PuzzleState with the new configuration
         """
-        pass
+        # for me: 
+        # self.n -> 3
+        # self.config -> [1,2,5,3,4,0,6,7,8]
+        # self.blank_index -> 5
+
+        if self.blank_index < self.n: #check to see if blank is alr in the top row bcuz u cant move up if alr in top row
+            return None
+        new_config = self.config[:]  #make copy of new board
+        new_index = self.blank_index - self.n #find pos directly above the blank
+        
+        new_config[self.blank_index] = new_config[new_index] #swap the blank with the title above it
+        new_config[new_index] = 0 
+
+        return PuzzleState(new_config, self.n, self, "Up", self.cost + 1) #new puzzle
+
 
     def move_down(self):
         """
