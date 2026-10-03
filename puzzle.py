@@ -67,9 +67,17 @@ class PuzzleState(object):
         :return a PuzzleState with the new configuration
         """
         if self.blank_index >= self.n * (self.n - 1):  #can't move down if blank is already in the bottom row
-
             return None
-        
+        #make new board
+        new_config = self.config[:] 
+        #find pos directly below the blank and sawp with the tile below
+        new_index = self.blank_index + self.n
+
+        new_config[self.blank_index] = new_config[new_index]
+        new_config[new_index] = 0
+
+        return PuzzleState(new_config, self.n, self, "Down", self.cost + 1)
+
 
     def move_left(self):
         """
