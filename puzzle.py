@@ -84,7 +84,7 @@ class PuzzleState(object):
         Moves the blank tile one column to the left.
         :return a PuzzleState with the new configuration
         """
-        pass
+    if self.blank_index % 
 
     def move_right(self):
         """
