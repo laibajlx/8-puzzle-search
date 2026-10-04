@@ -227,26 +227,38 @@ def dfs_search(initial_state):
 def A_star_search(initial_state):
     """A * search"""
     # choose the state with the lowest total estimated cost
-    frontier = []
-    frontier.append(initial_state)
+    frontier = Q.PriorityQueue()
+
+    count = 0
+    frontier.put((calculate_total_cost(initial_state), count, initial_state))
 
     explored = set()
+    explored.add(tuple(initial_state.config))
 
-    while frontier:
-        current_state = min(frontier, key=calculate_total_cost)
-        frontier.remove(current_state)
+    nodes_expanded = 0
+    max_search_depth = 0
+
+    while not frontier.empty():
+        _, _, current_state = frontier.get()
 
         if test_goal(current_state):
+            writeOutput(current_state, nodes_expanded, max_search_depth)
             return current_state
 
-        explored.add(tuple(current_state.config))
+        nodes_expanded += 1
 
         for child in current_state.expand():
             if tuple(child.config) not in explored:
-                frontier.append(child)
+                explored.add(tuple(child.config))
+
+                count += 1
+                frontier.put(
+                    (calculate_total_cost(child), count, child)
+                )
+
+                max_search_depth = max(max_search_depth, child.depth)
 
     return None
-
 
 def calculate_total_cost(state):
     """calculate the total estimated cost of a state"""
