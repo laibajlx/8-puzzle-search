@@ -4,6 +4,7 @@ import sys
 import math
 import time
 import queue as Q
+import resource
 
 #### SKELETON CODE ####
 ## The Class that Represents the Puzzle
