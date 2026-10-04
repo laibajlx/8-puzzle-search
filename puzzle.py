@@ -166,14 +166,50 @@ def bfs_search(initial_state):
 
 def dfs_search(initial_state):
     """DFS search"""
-    ### STUDENT CODE GOES HERE ###
-    pass
+    #using a stack so I explore the newest state first 
+    #refer to lecture notes
+    frontier = []
+    frontier.append(initial_state)
 
+    explored = set()
+
+    while frontier:
+        current_state = frontier.pop()
+
+        if test_goal(current_state):
+            return current_state
+
+        explored.add(tuple(current_state.config))
+
+        for child in current_state.expand():
+            if tuple(child.config) not in explored:
+                frontier.append(child)
+
+    return None
+    
 
 def A_star_search(initial_state):
     """A * search"""
-    ### STUDENT CODE GOES HERE ###
-    pass
+    # choose the state with the lowest total estimated cost
+    frontier = []
+    frontier.append(initial_state)
+
+    explored = set()
+
+    while frontier:
+        current_state = min(frontier, key=calculate_total_cost)
+        frontier.remove(current_state)
+
+        if test_goal(current_state):
+            return current_state
+
+        explored.add(tuple(current_state.config))
+
+        for child in current_state.expand():
+            if tuple(child.config) not in explored:
+                frontier.append(child)
+
+    return None
 
 
 def calculate_total_cost(state):
