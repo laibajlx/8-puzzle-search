@@ -168,8 +168,14 @@ def calculate_total_cost(state):
 
 def calculate_manhattan_dist(idx, value, n):
     """calculate the manhattan distance of a tile"""
-    ### STUDENT CODE GOES HERE ###
-    pass
+
+    current_row = idx // n
+    current_col = idx % n
+
+    goal_row = value // n
+    goal_col = value % n
+
+    return abs(current_row - goal_row) + abs(current_col - goal_col)
 
 
 def test_goal(puzzle_state):
