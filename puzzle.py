@@ -143,6 +143,7 @@ def writeOutput():
 
 
 def bfs_search(initial_state):
+    """BFS search"""
     #using a queue to explore states in the order they are added -> used lecture notes
     frontier = Q.Queue()
     frontier.put(initial_state)
