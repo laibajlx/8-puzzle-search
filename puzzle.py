@@ -101,7 +101,11 @@ class PuzzleState(object):
         Moves the blank tile one column to the right.
         :return a PuzzleState with the new configuration
         """
-        pass
+
+        #do the same for above except change pos index
+        if self.blank_index % self.n == self.n - 1: 
+            return None
+        
 
     def expand(self):
         """ Generate the child nodes of this node """
