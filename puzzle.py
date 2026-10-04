@@ -143,9 +143,24 @@ def writeOutput():
 
 
 def bfs_search(initial_state):
-    """BFS search"""
-    ### STUDENT CODE GOES HERE ###
-    pass
+    #using a queue to explore states in the order they are added -> used lecture notes
+    frontier = Q.Queue()
+    frontier.put(initial_state)
+
+    explored = set()
+
+    while not frontier.empty():
+        current_state = frontier.get()
+
+        if test_goal(current_state):
+            return current_state
+
+        explored.add(tuple(current_state.config))
+        for child in current_state.expand():
+            if tuple(child.config) not in explored:
+                frontier.put(child)
+
+    return None
 
 
 def dfs_search(initial_state):
