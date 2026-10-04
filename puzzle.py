@@ -138,6 +138,8 @@ class PuzzleState(object):
 ### Students need to change the method to have the corresponding parameters
 def writeOutput(goal_state, nodes_expanded, max_search_depth):
     # follow parent links backward to rebuild the path
+    # using import resource here
+    # refering to : https://docs.python.org/3/library/resource.html
     path = []
     current_state = goal_state
 

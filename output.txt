@@ -1,0 +1,7 @@
+path to goal: ['Up']
+cost of path: 1
+nodes expanded: 1
+search depth: 1
+max search depth: 1
+running time: 0.00003886
+max ram usage: 0.00000000
