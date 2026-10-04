@@ -300,7 +300,10 @@ def main():
     begin_state = list(map(int, begin_state))
     board_size = int(math.sqrt(len(begin_state)))
     hard_state = PuzzleState(begin_state, board_size)
+
+    global start_time, start_ram
     start_time = time.time()
+    start_ram = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
 
     if search_mode == "bfs":
         bfs_search(hard_state)
@@ -313,7 +316,6 @@ def main():
 
     end_time = time.time()
     print("Program completed in %.3f second(s)" % (end_time-start_time))
-
 
 if __name__ == '__main__':
     main()
