@@ -155,13 +155,13 @@ def writeOutput(goal_state, nodes_expanded, max_search_depth):
     ) / (2 ** 20)
 
     with open("output.txt", "w") as f:
-        f.write("path to goal: " + str(path) + "\n")
-        f.write("cost of path: " + str(goal_state.cost) + "\n")
-        f.write("nodes expanded: " + str(nodes_expanded) + "\n")
-        f.write("search depth: " + str(goal_state.depth) + "\n")
-        f.write("max search depth: " + str(max_search_depth) + "\n")
-        f.write("running time: %.8f\n" % running_time)
-        f.write("max ram usage: %.8f\n" % max_ram_usage)
+        f.write("path_to_goal: " + str(path) + "\n")
+        f.write("cost_of_path: " + str(goal_state.cost) + "\n")
+        f.write("nodes_expanded: " + str(nodes_expanded) + "\n")
+        f.write("search_depth: " + str(goal_state.depth) + "\n")
+        f.write("max_search_depth: " + str(max_search_depth) + "\n")
+        f.write("running_time: %.8f\n" % running_time)
+        f.write("max_ram_usage: %.8f\n" % max_ram_usage)
 
 
 def bfs_search(initial_state):
