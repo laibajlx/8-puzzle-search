@@ -116,9 +116,6 @@ class PuzzleState(object):
 
         return PuzzleState(new_config, self.n, self, "Right", self.cost + 1)
 
-
-        
-
     def expand(self):
         """ Generate the child nodes of this node """
         # Node has already been expanded
@@ -139,9 +136,30 @@ class PuzzleState(object):
 
 # Function that Writes to output.txt
 ### Students need to change the method to have the corresponding parameters
-def writeOutput():
-    ### Student Code Goes here
-    pass
+def writeOutput(goal_state, nodes_expanded, max_search_depth):
+    # follow parent links backward to rebuild the path
+    path = []
+    current_state = goal_state
+
+    while current_state.parent is not None:
+        path.append(current_state.action)
+        current_state = current_state.parent
+
+    path.reverse()
+
+    running_time = time.time() - start_time
+    max_ram_usage = (
+        resource.getrusage(resource.RUSAGE_SELF).ru_maxrss - start_ram
+    ) / (2 ** 20)
+
+    with open("output.txt", "w") as f:
+        f.write("path to goal: " + str(path) + "\n")
+        f.write("cost of path: " + str(goal_state.cost) + "\n")
+        f.write("nodes expanded: " + str(nodes_expanded) + "\n")
+        f.write("search depth: " + str(goal_state.depth) + "\n")
+        f.write("max search depth: " + str(max_search_depth) + "\n")
+        f.write("running time: %.8f\n" % running_time)
+        f.write("max ram usage: %.8f\n" % max_ram_usage)
 
 
 def bfs_search(initial_state):
