@@ -28,6 +28,7 @@ class PuzzleState(object):
             raise Exception("Config contains invalid/duplicate entries : ", config)
         self.n = n
         self.cost = cost
+        self.depth = 0 if parent is None else parent.depth + 1
         self.parent = parent
         self.action = action
         self.config = config
