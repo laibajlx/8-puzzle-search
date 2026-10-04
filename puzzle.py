@@ -162,9 +162,16 @@ def A_star_search(initial_state):
 
 def calculate_total_cost(state):
     """calculate the total estimated cost of a state"""
-    ### STUDENT CODE GOES HERE ###
-    pass
 
+    #starting with the cost of reaching this state
+    total_cost = state.cost
+
+    #adding the manhattan distance of each tile
+    for idx, value in enumerate(state.config):
+        if value != 0:
+            total_cost += calculate_manhattan_dist(idx, value, state.n)
+
+    return total_cost
 
 def calculate_manhattan_dist(idx, value, n):
     """calculate the manhattan distance of a tile"""
