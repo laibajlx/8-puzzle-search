@@ -176,24 +176,32 @@ def bfs_search(initial_state):
 
 def dfs_search(initial_state):
     """DFS search"""
-    #using a stack so I explore the newest state first 
-    #refer to lecture notes
-    frontier = []
-    frontier.append(initial_state)
+    # use a stack and push children in reverse udlr order
+    # refer to lecture notes
+    frontier = [initial_state]
 
     explored = set()
+    explored.add(tuple(initial_state.config))
+
+    nodes_expanded = 0
+    max_search_depth = 0
 
     while frontier:
         current_state = frontier.pop()
 
         if test_goal(current_state):
+            writeOutput(current_state, nodes_expanded, max_search_depth)
             return current_state
 
-        explored.add(tuple(current_state.config))
+        nodes_expanded += 1
 
-        for child in current_state.expand():
+        children = current_state.expand()
+
+        for child in reversed(children):
             if tuple(child.config) not in explored:
+                explored.add(tuple(child.config))
                 frontier.append(child)
+                max_search_depth = max(max_search_depth, child.depth)
 
     return None
     
