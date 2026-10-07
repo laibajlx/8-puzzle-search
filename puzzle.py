@@ -194,37 +194,6 @@ def bfs_search(initial_state):
     return None
 
 
-def dfs_search(initial_state):
-    """DFS search"""
-    # use a stack and push children in reverse udlr order
-    # refer to lecture notes
-    frontier = [initial_state]
-
-    explored = set()
-    explored.add(tuple(initial_state.config))
-
-    nodes_expanded = 0
-    max_search_depth = 0
-
-    while frontier:
-        current_state = frontier.pop()
-
-        if test_goal(current_state):
-            writeOutput(current_state, nodes_expanded, max_search_depth)
-            return current_state
-
-        nodes_expanded += 1
-
-        children = current_state.expand()
-
-        for child in reversed(children):
-            if tuple(child.config) not in explored:
-                explored.add(tuple(child.config))
-                frontier.append(child)
-                max_search_depth = max(max_search_depth, child.depth)
-
-    return None
-    
 
 def A_star_search(initial_state):
     """A * search"""
