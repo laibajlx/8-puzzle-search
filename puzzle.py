@@ -305,14 +305,7 @@ def main():
     start_time = time.time()
     start_ram = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
 
-    if search_mode == "bfs":
-        bfs_search(hard_state)
-    elif search_mode == "dfs":
-        dfs_search(hard_state)
-    elif search_mode == "ast":
-        A_star_search(hard_state)
-    else:
-        print("Enter valid command arguments !")
+    
 
     end_time = time.time()
     print("Program completed in %.3f second(s)" % (end_time-start_time))
